@@ -74,29 +74,33 @@ def mergesort(array):
 
         mergesort(left_array)
         mergesort(right_array)
+        merge(array, left_array,right_array)
 
-        left_index = right_index = array_index = 0
 
-        while left_index < len(left_array) and right_index < len(right_array):
-            if left_array[left_index] <= right_array[right_index]:
-                array[array_index] = left_array[left_index]
-                left_index += 1
-            else:
-                array[array_index] = right_array[right_index]
-                right_index += 1
+def merge(array, left_array, right_array):
+    left_index = right_index = array_index = 0
 
-            array_index += 1
-
-        # if either left_index or right_index is not reached to limit
-        while left_index < len(left_array):
+    while left_index < len(left_array) and right_index < len(right_array):
+        if left_array[left_index] <= right_array[right_index]:
             array[array_index] = left_array[left_index]
             left_index += 1
-            array_index += 1
-
-        while right_index < len(right_array):
+        else:
             array[array_index] = right_array[right_index]
             right_index += 1
-            array_index += 1
+
+        array_index += 1
+
+    # if either left_index or right_index is not reached to limit
+    while left_index < len(left_array):
+        array[array_index] = left_array[left_index]
+        left_index += 1
+        array_index += 1
+
+    while right_index < len(right_array):
+        array[array_index] = right_array[right_index]
+        right_index += 1
+        array_index += 1
+
 
 
 def quicksort(array, left_index, right_index):
@@ -125,7 +129,8 @@ def partition(array, left_index, right_index):
 
 def main():
     array = [10,7,19,89,20]
-    mergesort_inplace(array, 0, len(array) - 1)
+    # mergesort_inplace(array, 0, len(array) - 1)
+    mergesort(array)
     print(array)
 
 
