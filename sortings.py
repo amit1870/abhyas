@@ -10,7 +10,7 @@
 # Learn :
 #     1 : Each iteration produces a sorted sub array.
 #     2 : So only selected elemented need to be matched against sorted sub array
-#     3 : While matching it will be placed in final postion.
+#     3 : While matching it will be placed in final order.
 #     4 : Function call done with object reference. So sorted array need not to be returned.
 
 
@@ -36,6 +36,10 @@ def mergesort_inplace(array, left_index, right_index):
 
 def merge_inplace(array, start_index, mid_index, last_index):
     # check if direct merge is already sorted
+    # if there are two elements, array divided in two half.
+    # check if the two half is already sorted.
+    # mid_index = 0 + (1-0) // 2 = 0.
+    # so mid_index becomes 0 index element and mid_index + 1 become last element
     if array[mid_index] <= array[mid_index+1]:
         return
 
@@ -44,13 +48,15 @@ def merge_inplace(array, start_index, mid_index, last_index):
     right_index = mid_index + 1
 
     while left_index <= mid_index and right_index <= last_index:
+
         if array[left_index] <= array[right_index]:
             left_index += 1
-
         else:
             temp = array[right_index]
             index = right_index
 
+            # make space for inserting element next to current left_index
+            # so swaping is being done in this step. Similar logic as insertion sort.
             while index != left_index:
                 array[index] = array[index-1]
                 index -= 1
@@ -101,6 +107,16 @@ def merge(array, left_array, right_array):
         right_index += 1
         array_index += 1
 
+# QuickSort works by partitioning an array into smaller ones and exchanging
+# the smaller ones, depending on a comparison with the 'pivot' element picked.
+# Steps :
+#     1 : make any index value in the array as a 'pivot' element
+#     2 : partition the array according to the pivot
+#     3 : recursively quicksort the left partition
+#     4 : recursively quicksort the right partition
+# Learn :
+#       : in-place sorting with O(n log n). worst O(n 2)
+#       : difficult to implement if recursion not available
 
 
 def quicksort(array, left_index, right_index):
@@ -128,9 +144,9 @@ def partition(array, left_index, right_index):
 
 
 def main():
-    array = [10,7,19,89,20]
-    # mergesort_inplace(array, 0, len(array) - 1)
-    mergesort(array)
+    array = [34,5,67,3,8]
+    quicksort(array, 0, len(array) - 1)
+    # mergesort(array)
     print(array)
 
 
