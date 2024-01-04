@@ -23,3 +23,13 @@ $ sudo mysql
 > FLUSH PRIVILEGES;
 
 $ mysql -u dbu_amit -p || RUN with password 'xxxx'
+
+
+
+
+[ Learning URLs ]
+
+https://www.youtube.com/watch?v=vbQ2bYHxxEA&ab_channel=SyalInfotainment || Git
+
+https://docs.python-guide.org/ || The Hitchhiker’s Guide to Python!
+
