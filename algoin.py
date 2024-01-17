@@ -33,7 +33,14 @@ def is_perfect_integer(number):
 
     return t_number == 0
 
+def sum_list(func):
+    def wrapper(*args, **kwargs):
+        return sum(func(*args, **kwargs))
 
+    return wrapper
+
+
+@sum_list
 def fibo_series(n_range):
     series = [0,1]
 
@@ -42,4 +49,32 @@ def fibo_series(n_range):
         n_range -= 1
 
     return series
+
+
+def count_chars(word):
+    prev_crt = word[0]
+    count = 1
+    counts = []
+    for crt in word[1:]:
+        if crt == prev_crt:
+            count += 1
+        elif crt != prev_crt:
+            counts.append('{}{}'.format(prev_crt, count))
+            count = 1
+            prev_crt = crt
+
+    return counts.append('{}{}'.format(prev_crt, count))
+
+
+def get_prefix(words):
+    prefix = words[0]
+    for word in words[1:]:
+        for i, crt in enumerate(word):
+            if i < len(prefix) and crt == prefix[i]:
+                continue
+            else:
+                prefix = prefix[:i]
+                break
+
+    return prefix
 

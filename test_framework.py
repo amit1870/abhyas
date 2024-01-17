@@ -60,3 +60,5 @@ def file_fixture():
 def test_file_create_with_write(file_fixture):
     with open("tmp.txt") as f:
         assert f.read() == "Amit"
+
+
