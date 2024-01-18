@@ -78,3 +78,17 @@ def get_prefix(words):
 
     return prefix
 
+
+def second_max(nlist):
+    f_max = nlist[0]
+    s_max = f_max
+
+    for item in nlist[1:]:
+        if item > f_max:
+            s_max = f_max
+            f_max = item
+
+        elif item > s_max:
+            s_max = item
+            
+    return s_max
