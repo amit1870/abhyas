@@ -36,6 +36,9 @@ $ mkvirtualenv --python /usr/bin/python3.8 vrenv
 # path where virtual env will be created
 /home/amitxvf/.virtualenvs/vrenv
 
+# django admin template path
+/home/amitxvf/.virtualenvs/vrenv/lib/python3.8/site-packages/django/contrib/admin/templates
+
 # activate and deactivate virtual env
 $ workon vrenv
 $ deactivate
@@ -97,8 +100,3 @@ https://www.maths.cam.ac.uk/computing/linux/unixinfo/perms || File permission Li
 
 https://www.shellscript.sh/ || Shell Script Tutorial
 
-
-
-
-sitaram@sitaram.in
-sitaram

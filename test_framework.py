@@ -1,26 +1,39 @@
+'''
+pyest:
+
+    => assert used to verify test expectations
+    => will run all files of form test_*.py or *_test.py
+    => raises helper to assert that some code raises exception
+    => -q is used for quiet reporting
+    => class name should start with Test
+    => test arrangement is class is good
+    => sharing fixtures for only test in that class
+    => applying marks at the class level and having them implicitly apply to all tests
+    => caution : when grouping tests inside classes is that each test has a unique instance of the class.
+    => Having each test share the same class instance would be very detrimental to test isolation and would promote poor test practices.
+
+'''
+
 import os
 import pytest
 
 
-def f():
-    raise SystemExit(1)
 
-def test_f():
-    with pytest.raises(SystemExit):
-        f()
+def zero_division(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError as e:
+        raise e
 
-def inc(x):
-    return x + 1
+@pytest.mark.excepttest
+def test_zero_division():
+    with pytest.raises(ZeroDivisionError):
+        zero_division(10, 0)
 
-def test_inc():
-    assert inc(5) == 6
 
-
-'''
-Beaware : when grouping tests inside classes is that each test has a unique instance of the class.
-Having each test share the same class instance would be very detrimental to test isolation and would promote poor test practices.
-'''
+@pytest.mark.classtest
 class TestClass:
+    ''' TestClass for grouping test inside a class '''
     value = 90
 
     def test_one(self):
@@ -33,7 +46,7 @@ class TestClass:
 
 
 
-
+@pytest.mark.paramtest
 @pytest.mark.parametrize("test_input,output",[([1,2,3], 6),([3,4,5], 11)])
 def test_list_sum(test_input, output):
     assert sum(test_input) == output
@@ -41,7 +54,7 @@ def test_list_sum(test_input, output):
 def capital_str(c_str):
     return c_str.upper()
 
-
+@pytest.mark.paramtest
 @pytest.mark.parametrize("c_str,u_str",[('amit', 'AMIT'), ('RAhUl Patel', 'RAHUL PATEL') , ('AN si', 'ANSI')])
 def test_capital_str(c_str, u_str):
     assert capital_str(c_str) == u_str
