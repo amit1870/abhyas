@@ -59,16 +59,21 @@ python manage.py migrate
 # copy settings to sitaram/settings
 
 # add below content in /var/www/amitxvf_pythonanywhere_com_wsgi.py
-import os, sys
+import os
+import sys
 
-path = '/home/amitxvf/sitaram'
-if path not in sys.path:
-    sys.path.insert(0,path)
+HOME = os.environ['HOME']
+CODE_PATH = f'{HOME}/sitaramsita'
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "sitaram.settings"
-os.environ['SECRET_KEY'] = 'J$DJDHs#djdkdj@##jdjdhkfhfjdhfjdhfjfhf'
+if CODE_PATH not in sys.path:
+    sys.path.insert(0, CODE_PATH)
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "sitaramsita.settings"
+os.environ["SECRET_KEY"] = "WhDCWhDCaQSfX5YmxhDCaQSfX5YKubtTASfX5YmxZw2qlHKubtTA"
+os.environ["FAST_SMS_AUTH_KEY"] = "jWhDCaQSfX5YmxZw2qlHKubtTAznVMOLrd38cyPF4pIeU6Bo91QmFtJ8hYjZX3swCTv6pVBdNIWEu4xq"
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
+
 
 # log
 click amitxvf.pythonanywhere.com.server.log
@@ -84,7 +89,7 @@ just remove token.pickle and upload new token.pickle
 [GIT]
 checkout a git repo with token
 git clone https://<token>@github.com/<user>/<repo>.git
-git clone https://ghp_b2VYWGWEwKQxAIOIOHe4ivNMsyWtsx0ZGaUY@github.com/amit1870/sitaram.git
+git clone https://ghp_b2VYWGWEwKQxAIOIOHe4ivNMsyWtsx0ZGaUY@github.com/amit1870/sitaramsita.git
 
 [LEARN URLS]
 

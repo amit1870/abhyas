@@ -77,3 +77,11 @@ def test_add(a, b):
 def test_div(a, b):
     assert calculator.div(a, b) == a / b
 
+
+
+@pytest.mark.filterwarnings("ignore:.*test will raise error.*:DeprecationWarning")
+@pytest.mark.parametrize('a, b', [(a, b) for a, b in zip(range(10), range(20))])
+def test_mod(a, b):
+    assert calculator.mod(a, b) == a % b
+
+
