@@ -27,35 +27,33 @@
 
 ### PYTHONANYWHERE
 
-> # create virtual env on platform
+> create virtual env on platform
 > $ mkvirtualenv --python /usr/bin/python3.8 vrenv
 
-> # path where virtual env will be created
+> path where virtual env will be created
 > /home/amitxvf/.virtualenvs/vrenv
 
-> # django admin template path
+> django admin template path
 > /home/amitxvf/.virtualenvs/vrenv/lib/python3.8/site-packages/django/contrib/admin/templates
 
-> # activate and deactivate virtual env
+> activate and deactivate virtual env
 > $ workon vrenv
 > $ deactivate
 
-> # source code path
+> source code path
 > /home/amitxvf/sitaram
 
-> # work dir
+> work dir
 > /home/amitxvf
 
-> # static dir path
+> static dir path
 > /home/amitxvf/sitaram/accounts/static
 
-> # run migration command for database configuration if git clone/pull done as db.sqlite3 file will be changed.
+> run migration command for database configuration if git clone/pull done as db.sqlite3 file will be changed.
 > python manage.py makemigrations
 > python manage.py migrate
 
-> # copy settings to sitaram/settings
-
-> # add below content in /var/www/amitxvf_pythonanywhere_com_wsgi.py
+> add below content in /var/www/amitxvf_pythonanywhere_com_wsgi.py
 > `import os
    import sys
 
