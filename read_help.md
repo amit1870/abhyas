@@ -54,21 +54,6 @@
 > python manage.py migrate
 
 > add below content in /var/www/amitxvf_pythonanywhere_com_wsgi.py
-> `import os
-   import sys
-
-   HOME = os.environ['HOME']
-   CODE_PATH = f'{HOME}/sitaramsita'
-
-   if CODE_PATH not in sys.path:
-      sys.path.insert(0, CODE_PATH)
-
-   os.environ["DJANGO_SETTINGS_MODULE"] = "sitaramsita.settings"
-   os.environ["SECRET_KEY"] = "WhDCWhDCaQSfX5YmxhDCaQSfX5YKubtTASfX5YmxZw2qlHKubtTA"
-   os.environ["FAST_SMS_AUTH_KEY"] = "jWhDCaQSfX5YmxZw2qlHKubtTAznVMOLrd38cyPF4pIeU6Bo91QmFtJ8hYjZX3swCTv6pVBdNIWEu4xq"
-   from django.core.wsgi import get_wsgi_application
-   application = get_wsgi_application()
-`
 
 ### GIT
 > checkout a git repo with token
