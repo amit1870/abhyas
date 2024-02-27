@@ -12,3 +12,30 @@ print(vs._local)        # still accessed by object but should not use it as inte
 # print(vs.__local)       # will return error AttributeError
 # print(vs.__local__)     # will return error AttributeError
 
+def change_counter(counter):
+
+    def update_global_counter():
+        global counter
+        counter += 10
+
+    def update_nonlocal_counter():
+        nonlocal counter
+        counter += 10
+
+    def update_local_counter(counter):
+        counter += 10
+
+    # execution order
+    update_global_counter() # counter : 20
+    update_nonlocal_counter() # counter : 20
+    update_local_counter(counter) # counter : 30
+
+    # execution order
+    update_local_counter(counter) # counter : 30
+    update_nonlocal_counter() # counter : 20
+    update_global_counter() # counter : 20
+
+counter = 10
+change_counter(counter)
+print(counter) # counter : 20
+

@@ -2,10 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-practice.py
 
 # keys file which store confidential information
-keys
+BIGFILE.txt
 
 # C extensions
 *.so

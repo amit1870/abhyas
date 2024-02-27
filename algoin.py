@@ -20,18 +20,27 @@ def get_number_sum(number):
 
     return total
 
+def reverse_number(number):
+    total = 0
+    while number != 0:
+        digit = (number % 10)
+        total =  total * 10 + digit
+
+        number //= 10
+
+    return total
+
 
 def is_perfect_integer(number):
-    t_number = number
-    while t_number != 0 :
-        t_mod = t_number % 10
+    while number != 0 :
+        digit = number % 10
 
-        if t_mod == 0 or (t_mod != 0 and number % t_mod != 0):
+        if digit == 0 or (digit != 0 and number % digit != 0):
             break
-        elif t_mod != 0 and number % t_mod == 0:
-            t_number = t_number // 10
+        elif digit != 0 and number % digit == 0:
+            number = number // 10
 
-    return t_number == 0
+    return number == 0
 
 def sum_list(func):
     def wrapper(*args, **kwargs):
@@ -80,15 +89,45 @@ def get_prefix(words):
 
 
 def second_max(nlist):
-    f_max = nlist[0]
-    s_max = f_max
+    fst_max = nlist[0]
+    snd_max = fst_max
+    snd_index = 0
 
-    for item in nlist[1:]:
-        if item > f_max:
-            s_max = f_max
-            f_max = item
+    for index, item in enumerate(nlist[1:], start=1):
+        if item > fst_max:
+            snd_max = fst_max
+            fst_max = item
+            snd_index = index
 
-        elif item > s_max:
-            s_max = item
-            
-    return s_max
+        elif item != fst_max and item > snd_max:
+            snd_max = item
+            snd_index = index
+
+    return snd_index, snd_max
+
+
+def read_file(filepath):
+    count = 0
+    line_count = 0
+    with open(filepath) as fp:
+        for line in fp:
+            line_count += 1
+            for ch in line:
+                if ch.isupper():
+                    count += 1
+
+    return count, line_count
+
+def fibonaci(n):
+    if n <= 1:
+        return n
+    return n + fibonaci(n-1)
+
+def factorial(n):
+    if n <= 1:
+        return n
+    return n * factorial(n-1)
+
+
+
+
