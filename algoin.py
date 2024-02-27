@@ -113,7 +113,7 @@ def read_file(filepath):
         for line in fp:
             line_count += 1
             for ch in line:
-                if ch.isupper():
+                if ord(ch) in range(64,91):
                     count += 1
 
     return count, line_count
