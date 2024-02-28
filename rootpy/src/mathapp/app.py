@@ -1,3 +1,5 @@
+import time
+
 class Calculator:
 
     def __init__(self, a, b):
@@ -15,3 +17,10 @@ class Calculator:
 
     def div(self):
         return self.a / self.b
+
+    def square(self):
+        self.delay()
+        return self.a * self.a
+
+    def delay(self):
+        time.sleep(5)

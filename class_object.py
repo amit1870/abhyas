@@ -131,8 +131,29 @@ class Student(Human):
         
 
 
-s1 = Student(1,2,1)
-print(s1.is_blind())
+# s1 = Student(1,2,1)
+# print(s1.is_blind())
 # print(s1.do_operation())
-print(s1.is_blind())
-print(s1.is_disabled())
+# print(s1.is_blind())
+# print(s1.is_disabled())
+
+class Parent:
+    def __init__(self, name, profession):
+        self.name = name
+        self.profession = profession
+
+    def profession(self):
+        return self.profession
+
+class Child(Parent):
+    def __init__(self, name, father):
+        self.father = Parent(father, 'farmer')
+
+    def profession(self, prof):
+        return prof
+
+child = Child('amit', 'pitaji')
+prof = child.profession('farmer')
+print(prof)
+
+
