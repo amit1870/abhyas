@@ -1,3 +1,5 @@
+# search : linear and binary search
+
 array = [10,20,39,49,89]
 target = 49
 

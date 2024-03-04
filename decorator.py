@@ -1,4 +1,4 @@
-# decorator : allow to extend/modify a function without touching original.
+# decorator : allow to extend/modify a function without touching original function
 # iterator  : which implements two method __iter__() and __next__().
 # generator : allow to create iterator in functional style.
 # generator : no need to provide __iter__ and __next__ method.

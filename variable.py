@@ -1,9 +1,11 @@
+# variable : varible with single underscore(_), double underscore(__), tripe or more
 class Variable:
     def __init__(self):
         self.local = 10    # public
         self._local = 20    # semi private should be as internal not public
         self.__local = 30    # private to class not public
         self.__local__ = 40    # private to class not public
+        self.___local = 50     # private to class not public
 
 vs = Variable()
 

@@ -1,4 +1,4 @@
-# Insertion Sort : builds final sorted array one at a time by comparisons.
+# insertion sort : builds final sorted array one at a time by comparisons.
 # Props : 
 #     1 : less efficient on large list
 #     2 : Efficient on quite small data sets
