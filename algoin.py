@@ -128,6 +128,79 @@ def factorial(n):
         return n
     return n * factorial(n-1)
 
+def matrix_sum_tool(matrix_X, matrix_Y, matrix_Z):
+    import itertools
+    matrix_sum = []
+    for index in range(len(matrix_X)):
+        if type(matrix_X[index]) != type([]):
+            matrix_X[index] = [matrix_X[index]]
+        if type(matrix_Y[index]) != type([]):
+            matrix_Y[index] = [matrix_Y[index]]
+        if type(matrix_Z[index]) != type([]):
+            matrix_Z[index] = [matrix_Z[index]]
+
+        zipped = list(itertools.zip_longest(matrix_X[index],
+                                            matrix_Y[index],
+                                            matrix_Z[index],
+                                            fillvalue=0
+                                            ))
+
+        sum_item = []
+        for item in zipped:
+            sum_item.append(sum(item))
+
+        matrix_sum.append(sum_item)
+
+    return matrix_sum
+
+def matrix_sum(matrix_X, matrix_Y, matrix_Z):
+    matrix = []
+    max_length = max(len(matrix_X), len(matrix_Y), len(matrix_Z))
+
+
+    for index in range(max_length):
+        rowX = matrix_X[index]
+        rowY = matrix_Y[index]
+        rowZ = matrix_Z[index]
+
+        if type(rowX) != type([]):
+            rowX = [rowX]
+
+        if type(rowY) != type([]):
+            rowY = [rowY]
+
+        if type(rowZ) != type([]):
+            rowZ = [rowZ]
+
+        row_length = max(len(rowX), len(rowY), len(rowZ))
+
+        sum_rows = []
+        for rindex in range(row_length):
+            total = 0
+            if rindex < len(rowX):
+                total += rowX[rindex]
+
+            if rindex < len(rowY):
+                total += rowY[rindex]
+
+            if rindex < len(rowZ):
+                total += rowZ[rindex]
+
+            sum_rows.append(total)
+
+        matrix.append(sum_rows)
+
+    return matrix
+
+
+matrix_X = [[1,2,3], [4,5,6], [7,8,9]]
+matrix_Y = [[9,8,7], [6,5,4], [3,2,1]]
+matrix_Z = [1, [1,2], [1,2,3]]
+matrix = [[11,10,10], [11,12,10], [11,12,13]]
+matrix = matrix_sum(matrix_X, matrix_Y, matrix_Z)
+
+
+
 
 
 
