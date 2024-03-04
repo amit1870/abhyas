@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 
 # keys file which store confidential information
-BIGFILE.txt
 
 # C extensions
 *.so
