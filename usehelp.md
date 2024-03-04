@@ -58,7 +58,7 @@
 ### GIT
 > checkout a git repo with token
 > git clone https://<token>@github.com/<user>/<repo>.git
-> git clone https://ghp_b2VYWGWEwKQxAIOIOHe4ivNMsyWtsx0ZGaUY@github.com/amit1870/sitaramsita.git
+> git clone https://ghp_b2VYWGWEwKQxAIOIOHe4ivNMsyWtsx0ZGaUY@github.com/amit1870/sitaram.git
 
 ### LEARN URLS
 
