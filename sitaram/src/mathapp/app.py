@@ -1,26 +1,13 @@
-import time
-
 class Calculator:
 
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+    def add(self, a, b):
+        return a + b
 
-    def add(self):
-        return self.a + self.b
+    def sub(self, a, b):
+        return a - b
 
-    def sub(self):
-        return self.a - self.b
+    def mul(self, a, b):
+        return a * b
 
-    def mul(self):
-        return self.a * self.b
-
-    def div(self):
-        return self.a / self.b
-
-    def square(self):
-        self.delay()
-        return self.a * self.a
-
-    def delay(self):
-        time.sleep(5)
+    def div(self, a, b):
+        return a / b

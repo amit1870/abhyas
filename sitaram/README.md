@@ -54,18 +54,13 @@
 > Disabling plugins
 > `pytest -p no:doctest`
 
-> 
+>
 
 
 ## Pytest Mark
 
 > Marks `pytest.mark` can be used apply meta data to test functions (but not fixtures), which can then be accessed by fixtures or plugins.
-> 
-
-## Add more on importlib
-
-
-
+>
 
 ## Fixtures
 > in testing , a fixture provides a defined, reliable and consistent context for the tests.
@@ -80,17 +75,17 @@
 
 
 > Fixture availability is determined from the perspective of the test.
-> A fixture is only available for tests to request if they are in the scope that fixture is defined in.s
+> A fixture is only available for tests to request if they are in the scope that fixture is defined in scope.
 > If a fixture is defined inside a class, it can only be requested by tests inside that class.
 > if a fixture is defined inside the global scope of the module, then every test in that module, even if it’s defined inside a class, can request it.
 
 > Autouse fixtures are executed first within their scope.
-> Autouse fixtures are assumed to apply to every test that could reference them, so they are executed before other fixtures in that scope. 
+> Autouse fixtures are assumed to apply to every test that could reference them, so they are executed before other fixtures in that scope.
 > Fixtures that are requested by autouse fixtures effectively become autouse fixtures themselves for the tests.
 > So if fixture a is autouse and fixture b is not, but fixture a requests fixture b, then fixture b will effectively be an autouse fixture as well, but only for the tests that a applies to.
 
 > conftest.py: sharing fixtures across multiple files
-> 
+>
 
 
 ### Fixture scopes
@@ -111,3 +106,16 @@
 > responsible to create a connection to a preexisting SMTP server, to only be invoked once per test module (the default is to invoke once per test function).
 > Multiple test functions in a test module will thus each receive the same smtp_connection fixture instance, thus saving time.
 > Possible values for scope are: function, class, module, package or session.
+
+### Pytest Hooks
+
+> `pytest_configure` is used to add/modify global config object.
+> any change to config in `pytest_configure` hook will be reflected to global.
+> global config can be access in test/fixture using `request.config` or `pytestconfig` fixture.
+> `pytest_configure` is used to add/modify global config, session-wide settings, or variables
+> that remain constants during session.
+
+> `pytest_addoption` is used to add custom option from command line.
+> either your can use this hook or can add option in `pytest.ini` file.
+> but if your custom option has variable values, better use command line.
+

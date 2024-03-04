@@ -4,16 +4,11 @@ from src.mathapp.app import Calculator
 
 @pytest.fixture
 def calculator():
-    return Calculator(2,4)
+    return Calculator()
 
-@pytest.fixture(scope="module", params=[(2,3), (4,5)])
-def custom_calculator(request):
-    a,b = request.param
-    return Calculator(a, b)
+def pytest_addoption(parser):
+    parser.addoption("--a", action="store", default="10", help="operand a")
+    parser.addoption("--b", action="store", default="10", help="operand b")
+    parser.addoption("--c", action="store", default="00", help="operand c")
 
-@pytest.fixture
-def custom_param():
-    def _calculator(a, b):
-        return Calculator(a, b)
 
-    return _calculator
