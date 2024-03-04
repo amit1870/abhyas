@@ -6,7 +6,7 @@
 > $ sudo apt-get update
 > $ sudo apt-get install sublime-text
 
-## GENERATE SSH KEYS FOR GIT
+### GENERATE SSH KEYS FOR GIT
 
 > $ ssh-keygen -t ed25519 -C "amitxvf@gmail.com"
 > $ cat ~/.ssh/id_ed25519.pub
