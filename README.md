@@ -1,2 +1,2 @@
 # abhyas
-programming concepts abhyas with सीताराम
+programming concept abhyas with sitaram
