@@ -21,7 +21,7 @@
 # the derived class object is passed as the implied first argument.
 # @staticmethod : transform a method into a static method.
 # a static method does not receive an implicit first argument.
-# can be called C.f()/C().f()/f()
+# can be called C.f()/C().f()
 
 
 from abc import ABC, abstractmethod
