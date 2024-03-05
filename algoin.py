@@ -200,4 +200,42 @@ matrix = [[11,10,10], [11,12,10], [11,12,13]]
 matrix = matrix_sum(matrix_X, matrix_Y, matrix_Z)
 
 
+def get_logo(company):
+    from collections import defaultdict
+
+    char_dict = defaultdict(int)
+    for char in company:
+        char_dict[char] += 1
+
+    char_items = char_dict.items()
+    char_items = sorted(char_items, key=lambda item : item[0], reverse=False)
+    char_items = sorted(char_items, key=lambda item : item[1], reverse=False)
+    char_items = sorted(char_items, key=lambda item : item[1], reverse=True)
+
+
+    for pair in char_items[:3]:
+        print(pair[0], pair[1])
+
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @staticmethod
+    def sort_student(students):
+        return sorted(students, key=lambda student: student.name)
+
+    def print_student(self, students):
+        for student in students:
+            print(student.name)
+
+
+amit = Student('amit', 34)
+rahul = Student('rahul', 33)
+santy = Student('santy', 32)
+vishu = Student('vishu', 34)
+
+# sort_students = amit.sort_student([amit, rahul, santy, vishu])
+# amit.print_student(sort_students)
 
