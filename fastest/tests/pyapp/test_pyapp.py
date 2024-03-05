@@ -22,3 +22,8 @@ def test_password_strong(pytestconfig):
     password = '4BG%GSF98#$jdh'
     assert pytestconfig.password_pattern.match(password), "password does not match specs"
 
+
+@pytest.mark.parametrize("get_param_password", ['h#hd%hjsj', 'simEw@123'], indirect=True)
+def test_param_password(get_param_password, pytestconfig):
+    password = get_param_password
+    assert pytestconfig.password_pattern.match(password), "password does not match specs"

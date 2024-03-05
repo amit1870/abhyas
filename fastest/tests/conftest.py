@@ -18,3 +18,8 @@ def get_strong_password():
 def get_simple_password():
     password = simple_password(8)
     return password
+
+@pytest.fixture
+def get_param_password(request):
+    password = request.param
+    return password
