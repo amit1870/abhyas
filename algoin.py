@@ -217,25 +217,3 @@ def get_logo(company):
         print(pair[0], pair[1])
 
 
-class Student:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-    @staticmethod
-    def sort_student(students):
-        return sorted(students, key=lambda student: student.name)
-
-    def print_student(self, students):
-        for student in students:
-            print(student.name)
-
-
-amit = Student('amit', 34)
-rahul = Student('rahul', 33)
-santy = Student('santy', 32)
-vishu = Student('vishu', 34)
-
-# sort_students = amit.sort_student([amit, rahul, santy, vishu])
-# amit.print_student(sort_students)
-

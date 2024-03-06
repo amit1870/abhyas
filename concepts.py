@@ -7,7 +7,10 @@ evenlist = [i for i in nlist if i % 2 == 0]
 oddlist = [i for i in nlist if i % 2 != 0]
 oddpadzero = [i if i % 2 == 0 else 0 for i in nlist]
 evenpadzero = [i if i % 2 != 0 else 0 for i in nlist]
+numbers = [1,2,1,1,1,22,2,34,44,44,44,5,6,7,7,8,8,9,9,9,0,0,0]
+subset = [numbers[i] for i in range(0,len(numbers)) if i < len(numbers) - 2 and numbers[i] == numbers[i+1] == numbers[i+2]]
 
+print(subset)
 print(nlist)
 print(evenlist)
 print(oddlist)
