@@ -3,8 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# keys file which store confidential information
-
+# data files which store confidential information
+BIGFILE.csv
+BIGFILE.txt 
+SMLFILE.csv
+SMLFILE.txt
 # C extensions
 *.so
 

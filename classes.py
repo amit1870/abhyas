@@ -43,7 +43,8 @@
 
 
 
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 
 class SitaRam(ABC):
     def __init__(self, legs=None, hands=None, eyes=None, gender=None):
