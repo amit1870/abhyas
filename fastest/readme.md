@@ -76,20 +76,25 @@ so destroying such fixture with each test is not optimal.
 - various stages hooks allow to inject code at different stage of testing.
 - bootstrapping -> initialization -> collection -> runtest -> reporting -> debugging
 - bootstrapping : called at begin and end of testing.
--               : crucial for setting up/tear down configuration/env that needed for testing.
+- bootstrapping : crucial for setting up/tear down configuration/env that needed for testing.
+
 - initialization: these hooks come into play after bootstrap.
--               : instrumental for tasks like adding command-line-option or adding new plugings.
--               : these hooks set stage for customized testing env.
+- initialization: instrumental for tasks like adding command-line-option or adding new plugings.
+- initialization: these hooks set stage for customized testing env.
+
 - collection    : deals with discovering and collecting tests.
--               : they give power to collecting strategy allow to add/modify/skip tests on custom criteria.
+- collection    : they give power to collecting strategy allow to add/modify/skip tests on custom criteria.
+
 - runtest       : these hooks offer way to customize test execution.
--               : hooks enables action before/during/after a test in run.
--               : actions can be from setting up test data to cleaning resource after a test.
+- runtest       : hooks enables action before/during/after a test in run.
+- runtest       : actions can be from setting up test data to cleaning resource after a test.
+
 - reporting     : these hooks are all about how test results are processed/presented.
--               : way to customoze the output/create custom reports
+- reporting     : way to customoze the output/create custom reports
+
 - debugging     : these hooks are valuable for debugging.
--               : comes into play a when tests fail or when you need to drop into an interactive session.
--               : they can help in inspecting the state of a test at various points or managing breakpoints.
+- debugging     : comes into play a when tests fail or when you need to drop into an interactive session.
+- debugging     : they can help in inspecting the state of a test at various points or managing breakpoints.
 
 
 
