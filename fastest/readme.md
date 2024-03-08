@@ -52,15 +52,15 @@ run tests by collect argument:  tests from packages
 - fixture defines the steps and data that consitute the *arrange* phase of a test.
 - fixtures are requested by test functions or other fixtures by declaring them as argument.
 - fixture are available for tests to request if they are in the scope.
+- why scope is needed ?
+- fixture requiring network access, database access are time-expensive to create.
+- so destroying such fixture with each test is not optimal.
+
 - **function**: the default scope, the fixture is destroyed at the end of the test.
 - **class**: the fixture is destroyed during teardown of the last test in the class.
 - **module**: the fixture is destroyed during teardown of the last test in the module.
 - **package**: the fixture is destroyed during teardown of the last test in the package.
 - **session**: the fixture is destroyed at the end of the test session.
-
-** why scope is needed ? **
-fixture requiring network access, database access are time-expensive to create.
-so destroying such fixture with each test is not optimal.
 
 
 ### pytest conftest.py(plugin)
