@@ -1,2 +1,2 @@
 # abhyas sitaram
-programming concept abhyas with sitaram
+sitaram abhyas with python
