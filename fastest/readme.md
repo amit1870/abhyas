@@ -12,32 +12,32 @@
 
 ### pytest running ways
 
-** run test in a module or list of modules **
+**run test in a module or list of modules**
 `pytest test_mod.py`
 `pytest test_mod_one.py test_mod_two.py`
 
-** run test with dir **
+**run test with dir**
 `pytest testing/ testing2/`
 
-** run tests by keyword expressions **
+**run tests by keyword expressions**
 `pytest -k 'MyClass and not method'`
 
-** run tests by collect argument: specific test within a module **
+**run tests by collect argument: specific test within a module**
 `pytest tests/test_mod.py::test_func`
 
-** run tests by collect argument: all tests in a class **
+**run tests by collect argument: all tests in a class**
 `pytest tests/test_mod.py::TestClass`
 
-** run tests by collect argument: specific test method **
+**run tests by collect argument: specific test method**
 `pytest tests/test_mod.py::TestClass::test_method`
 
-** run tests by collect argument: specific parametrization of a test **
+**run tests by collect argument: specific parametrization of a test**
 `pytest tests/test_mod.py::test_func[x1,y2]`
 
-** run tests by collect argument: tests by marker expressions **
+**run tests by collect argument: tests by marker expressions**
 `pytest -m slow`
 
-** run tests by collect argument:  tests from packages **
+**run tests by collect argument:  tests from packages**
 `pytest --pyargs pkg.testing`
 
 
