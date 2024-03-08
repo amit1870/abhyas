@@ -1,6 +1,7 @@
 # module will provide function to operate on files
 
 import os
+import re
 
 from collections import defaultdict
 from collections import Counter
@@ -188,6 +189,102 @@ def read_line_by_seek(filepath, seekcount=0):
 
         for line in fp:
             print(line)
+
+
+def replace_word_in_file(filepath, word, rplword):
+    # loading whole content in memory
+    with open(filepath, 'r') as fp:
+        content = fp.read()
+
+    replaced = re.subn(word, rplword, content)
+
+    if replaced[1] > 1:
+        content = replaced[0]
+        with open(filepath, 'w+') as fp:
+            fp.write(content)
+
+
+def replace_word_in_iterator(filepath, word, rplword):
+    # read an replace a word in file all location without loading in memory
+    replace_count = 0
+    pattern = re.compile(word)
+    with open(filepath, 'r+') as fp:
+        END_FILE_FLAG = False
+        while not END_FILE_FLAG:
+            current_pos = fp.tell()
+            line = fp.readline()
+
+            replaced = pattern.subn(rplword, line)
+            if replaced[1] > 0:
+                fp.seek(current_pos)
+                fp.writelines([replaced[0]])
+                replace_count += replaced[1]
+
+            next_pos = fp.tell()
+
+            if current_pos == next_pos:
+                END_FILE_FLAG = True
+
+    return replace_count
+
+def read_csv_file2(csvpath, delimiter=','):
+    ''' read a csv file and return list of lines'''
+
+    lines = []
+
+    with open(csvpath) as csvfp:
+        csvfp = csv.reader(csvfp, delimiter=delimiter)
+        for line in csvfp:
+            lines.append(line)
+
+    return lines
+
+def csv_to_dict(csvpath, delimiter=','):
+    ''' read a cvs file and return dict with values in list '''
+
+    csv_dict = {}
+
+    lines = read_csv_file(csvpath, delimiter=delimiter)
+
+    columns = lines[0]
+
+    for line in lines[1:]:
+        name = line[0]
+        csv_dict[(columns[0],name)] = []
+        for index,data in enumerate(line[1:], start=1):
+            csv_dict[(columns[0],name)].append({columns[index] : data})
+
+    return csv_dict
+
+def dict_to_csv(csv_dict, csvpath, delimiter=','):
+    ''' wrtie dict to csvpath with specified delimiter '''
+
+    # {'sitaram1': [{'nam': 'sitaram'}, {'dham': 'ayodhya'}, {'leela': 'ramleela'}, {'katha': 'ramayan'}],
+    columns = []
+    data = []
+    for key,value in csv_dict.items():
+        if columns == []:
+            columns.append(key[0])
+            for item in value:
+                columns.append(list(item)[0])
+
+        row = [key[1]]
+        for item in value:
+            row.append(list(item.values())[0])
+        data.append(row)
+
+    columns = delimiter.join(columns)
+    data = [delimiter.join(row) for row in data]
+
+    with open(csvpath, 'w') as fp:
+        fp.write(columns + '\n')
+        for row in data:
+            fp.write(row + '\n')
+
+    return csvpath
+
+
+
 
 
 

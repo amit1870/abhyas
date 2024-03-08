@@ -1,188 +1,171 @@
 # decorator : allow to extend/modify a function without touching original function
+#           : inner function allow to pass argument to original function
+#           : returned inner function allow to take argument from outside of outer function
+#           : variable binding to inner function
 # iterator  : which implements two method __iter__() and __next__().
 # generator : allow to create iterator in functional style.
 # generator : no need to provide __iter__ and __next__ method.
 # function  : function are first class objects and objects can assigned/returned.
 
-
-def say_sitaram(func):
-    def sitaram(*args, **kwargs):
-        result = func(*args, **kwargs)
-        return f"sitaram {result}"
-
-    return sitaram
-
-@say_sitaram
-def greet(name):
-    return f"jay {name}"
-
-
-class GetEvenIndexItem:
-    def __init__(self, nlist):
-        self.nlist = nlist
-        self.counter = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.counter < len(self.nlist):
-            self.counter += 2
-            return self.nlist[self.counter - 2]
-        else:
-            raise StopIteration
-
-
-def get_even_index_item(nlist):
-    counter = 0
-    while counter < len(nlist):
-        yield nlist[counter]
-        counter += 2
-
-nlist = [1,2,3,4,5,6,7,8,9]
-evens = GetEvenIndexItem(nlist)
-evens = get_even_index_item(nlist)
-
-print(next(evens))
-print(next(evens))
-print(next(evens))
-print(next(evens))
-
-def add_jay_to_names(func):
-    def wrapper(*args, **kwargs):
-        names = func(*args, **kwargs)
-        jaynames = []
+# decorator without arguments
+def add_sitaram(func):
+    def append_sitaram():
+        sitarams = []
+        names = func()
         for name in names:
-            jaynames.append(f"jay {name}")
+            sitarams.append(f"jay sitaram {name}")
 
-        return jaynames
+        return sitarams
 
-    return wrapper
+    return append_sitaram
 
-def add_post_to_names(func):
-    def wrapper(*args, **kwargs):
-        names = func(*args, **kwargs)
-        postnames = []
+@add_sitaram
+def get_names():
+    return ['amit', 'ajay', 'avinash', 'rahul', 'vivek', 'bharat', 'aman', 'bacchi', 'narayan']
+
+
+sitaram_added_names = get_names()
+print(sitaram_added_names)
+
+def get_names():
+    return ['amit', 'ajay', 'avinash', 'rahul', 'vivek', 'bharat', 'aman', 'bacchi', 'narayan']
+
+
+add_sitaram_to_names = add_sitaram(get_names)
+sitaram_added_names = add_sitaram_to_names()
+print(sitaram_added_names)
+
+# decorator with arguments
+
+def add_radha(func):
+    def wrapper(names):
+        radha_names = []
+        names = func(names)
         for name in names:
-            postnames.append(f"{name} ji ki")
+            radha_names.append(f"radha {name}")
 
-        return postnames
+        return radha_names
 
     return wrapper
 
-# decorator chaining
-@add_post_to_names
-@add_jay_to_names
-def generate_names():
-    return ['sitaram', 'radhakrishna', 'laxminarayan', 'bankebihari']
+@add_radha
+def get_names(initial):
+    if initial.lower() == 'a':
+        return ['amit', 'anil', 'avadha', 'arun', 'ankur']
+    elif initial.lower() == 'b':
+        return ['bharat', 'bhuwan', 'bhumi', 'bhuvnesh','bansi']
+    else:
+        return ['sitaram', 'radhakrishna', 'hariom', 'narayan','ramanuj']
 
-def generate_mata():
-    return ['sita', 'radha', 'kaikei', 'kaushlya', 'sumitra']
+radha_added_names = get_names('c')
+print(radha_added_names)
 
 
-generated_names = generate_names()
-print(generated_names)
+def get_name_by_inital(initial):
+    if initial.lower() == 'a':
+        return ['amit', 'anil', 'avadha', 'arun', 'ankur']
+    elif initial.lower() == 'b':
+        return ['bharat', 'bhuwan', 'bhumi', 'bhuvnesh','bansi']
+    else:
+        return ['sitaram', 'radhakrishna', 'hariom', 'narayan','ramanuj']
+
+radha_added_name = add_radha(get_name_by_inital)
+radha_added_names = radha_added_name('a')
+print(radha_added_names)
+radha_added_names = radha_added_name('b')
+print(radha_added_names)
+radha_added_names = radha_added_name('c')
+print(radha_added_names)
 
 
-# function name alias
-mataye = add_jay_to_names(generate_mata)
-sriadd = add_post_to_names(mataye)
-print(sriadd())
+def generate_number(a, b, n):
+    import random
+    if b - a <= 0:
+        return [a, b]
+    else:
+        return random.sample(range(a,b+1), n)
 
-mataye = add_post_to_names(add_jay_to_names(generate_mata))()
-print(sriadd())
+def sum_number_list(func):
+    def wrapper(a, b, n):
+        numbers = func(a, b, n)
+        print(numbers)
+        return sum(numbers)
 
-def get_table(func):
+    return wrapper
+
+sum_number = sum_number_list(generate_number)
+total = sum_number(10, 20, 5)
+print(total)
+
+sum_number = sum_number_list(generate_number)
+total = sum_number(10, 20, 6)
+print(total)
+
+
+def x(func):
+    def wrapper(x):
+        return 4 * func(x)
+
+    return wrapper
+
+@x
+def func1(y):
+    return y
+
+print(func1(1)) #print 4
+print(func1(2)) #print 8
+print(func1(3)) #print 12
+
+def g(a):
+    return a - 10
+
+def d(f):
+    def w(x):
+        z = f(x)
+        return g(z)
+
+    return w
+
+def f(a):
+    return a
+
+a = 10
+df = d(f)
+dfa = df(a)
+print(dfa)
+
+b = 20
+df = d(f)
+dfb = df(b)
+print(dfb)
+
+# decroator with variable arguments
+
+def square_number(*args):
+    return tuple(item * item for item in args)
+
+
+def sum_numbers(func):
     def wrapper(*args, **kwargs):
-        return func(*args, **kwargs)
+        total = 0
+        for item in square_number(*args, **kwargs):
+            total += item
+
+        return total
 
     return wrapper
 
 
-@get_table
-def table(n):
-    for i in range(1,11):
-        s = n * i
-        print(f"{n} X {i} = {s}")
+squared = square_number(10,20, 30)
+print(squared)
 
+sum_squared = sum_numbers(square_number)
+summed = sum_squared(10, 20)
+print(summed)
 
-table(2)
-table(3)
-table(4)
-
-
-generate_names = (name for name in ['sita','radha','laxmi','rukmani'])
-print(generate_names)
-print(next(generate_names))
-print(next(generate_names))
-print(next(generate_names))
-print(next(generate_names))
-# print(next(generate_names)) # StopIteration
-
-names = ['sita','radha','laxmi','rukmani']
-
-def generate_names(names):
-    for name in names:
-        yield name
-
-
-def greet_name():
-    name = next(generate_names(names))
-    print(f"sri {name}")
-
-greet_name()
-greet_name()
-greet_name()
-
-
-class OddIndexItem:
-    def __init__(self, data):
-        self.data = data
-        self.counter = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.counter + 1 < len(self.data):
-            self.counter += 2
-            return self.data[self.counter-1]
-
-        else:
-            raise StopIteration
-
-
-oddindexitem = OddIndexItem(list(range(1,10)))
-print(next(oddindexitem))
-print(next(oddindexitem))
-print(next(oddindexitem))
-print(next(oddindexitem))
-# print(next(oddindexitem)) # StopIteration
-
-
-def get_odd_index_item(array):
-    counter = -1
-    print(len(array))
-    while counter < len(array) - 1:
-        counter += 2
-        yield array[counter]
-        print(counter)
-
-
-import string
-array = string.ascii_uppercase
-print(array)
-generator_odd = get_odd_index_item(array)
-for item in generator_odd:
-    print(item)
-
-
-array_iter = iter(array)
-print(next(array_iter))
-print(next(array_iter))
-
-for item in array_iter:
-    print(item, end=' ')
+sum_squared = sum_numbers(square_number)
+summed = sum_squared(10, 20, 30)
+print(summed)
 
 
 

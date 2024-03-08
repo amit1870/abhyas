@@ -19,6 +19,20 @@
 # what is method overriding ?
 # the method in the subclass overrides the method in the superclass. concept called overriding.
 
+# what is method overloading ?
+# with variable number of arugument defining same method is called overloading.(not possible with python)
+
+# what is operator overloading ?
+# defining different behaviour for same operator is called operator overloading.
+
+# what is difference between inheritance and composition ?
+# use inheritance when you want to extend/modify feature/methods of parent class.
+# use composition(create object inside class and use its object) when features modify/extend not required.
+
+# what is duck typing ?
+# The idea is that you don't need to specify a type(variable/object) in order to invoke an existing method on an object.
+# if a method is defined on it, you can invoke it.
+
 # what is method resolution order MRO in case of multiple inheritance ?
 # method resolution is done with left most class. if found a method there it will be returned.
 # otherwise it will follow order of left-to-right for MRO.
@@ -252,13 +266,44 @@ class Student:
         for student in students:
             print(student.name)
 
+    def __del__(self):
+        print(f'deleting object {self.name}')
 
-amit = Student('amit', 34)
-rahul = Student('rahul', 33)
-santy = Student('santy', 32)
-vishu = Student('vishu', 34)
+
+amit = Student('stuamit', 34)
+rahul = Student('sturahul', 33)
+santy = Student('stusanty', 32)
+vishu = Student('stuvishu', 34)
 
 sort_students = amit.sort_student([amit, rahul, santy, vishu])
 amit.print_student(sort_students)
+
+del vishu
+
+print(amit.name)
+print(rahul.name)
+print(santy.name)
+# print(vishu.name) # will raise error NameError
+
+
+class AdvDict:
+    def __init__(self, d):
+        self.d = d
+
+    # + operator overloading
+    def __add__(self, e):
+        for k,v in e.d.items():
+            if k in self.d:
+                self.d[k] = self.d[k] + v
+            else:
+                self.d[k] = v
+
+        return self.d
+
+test_one_marks = AdvDict({'math': 20, 'science' : 30})
+test_two_marks = AdvDict({'math': 30, 'science' : 30})
+test_marks = test_one_marks + test_two_marks
+print(test_marks)
+
 
 
