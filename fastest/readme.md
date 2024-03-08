@@ -1,17 +1,14 @@
-# Pytest Concept Abhyas
+## sitaram abhyas with pytest
 
-## Pytest
+### pytest framework
+- make it easy to write small/readable tests that can be scaled
 
-> pytest framework makes it easy to write small, readable tests and can scale to support
-> complex functional testing for applications and libraries.
-
-## Python test discoveries
-
-> pytest will start with testpaths if configured, else with current dir.
-> pytest will collect file `test_*.py` or `*_test.py` from these dirs until all sub dirs files included.
-> then pytest will collect test from these collected files with `test` prefix functions.
-> and `test` prefixed functions or methods from class prefixed `Test` without `__init__`
-> methods decorated with `@staticmethod` and `@classmethod` also considered.
+### pytest discoveries
+- pytest start with `testpaths` if configured else with current dir
+- pytest collect files `test_*.py/*_test.py` from dir/subdir
+- pytest collect tests from these collected files with `test` prefix functions.
+- pytest collect tests methods prefixed with `test_` from class prefixed `Test` without `__init__`.
+- methods decorated with `@staticmethod` and `@classmethod` also considered test functions.
 
 ## How to pytest
 
