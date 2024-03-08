@@ -15,6 +15,7 @@ def test_divide_by_zero(calculator):
 def test_add_parametrize(calculator, a, b, c):
     assert calculator.add(a,b) == c
 
+@pytest.mark.skip(reason="cmd parameter not passed")
 def test_add_cmd(calculator, request):
     a = request.config.getoption("--a")
     b = request.config.getoption("--b")
