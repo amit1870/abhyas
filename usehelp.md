@@ -76,3 +76,5 @@
 
 > https://pytest-with-eric.com/ || pytest good tutorial
 
+> https://methodpoet.com/unit-testing-advantages-and-disadvantages/ || testing application/knowledge
+

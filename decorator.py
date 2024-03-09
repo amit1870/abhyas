@@ -167,5 +167,21 @@ sum_squared = sum_numbers(square_number)
 summed = sum_squared(10, 20, 30)
 print(summed)
 
+def x(func_org):
+    def func(y):
+        print("go")
+        return 4 * y
+
+    return func
 
 
+
+
+def func1(y):
+    return y
+
+print(func1(1)) # 4
+
+ss = x(func1)
+print(ss(1))
+print(ss(2))

@@ -203,6 +203,8 @@ def replace_word_in_file(filepath, word, rplword):
         with open(filepath, 'w+') as fp:
             fp.write(content)
 
+    return replaced[1]
+
 
 def replace_word_in_iterator(filepath, word, rplword):
     # read an replace a word in file all location without loading in memory
@@ -227,17 +229,6 @@ def replace_word_in_iterator(filepath, word, rplword):
 
     return replace_count
 
-def read_csv_file2(csvpath, delimiter=','):
-    ''' read a csv file and return list of lines'''
-
-    lines = []
-
-    with open(csvpath) as csvfp:
-        csvfp = csv.reader(csvfp, delimiter=delimiter)
-        for line in csvfp:
-            lines.append(line)
-
-    return lines
 
 def csv_to_dict(csvpath, delimiter=','):
     ''' read a cvs file and return dict with values in list '''
