@@ -17,7 +17,6 @@ class ERROR:
     VWT = 'error in view employee'
 
 
-
 class Employee:
     '''
     class represent Employee.
@@ -31,9 +30,6 @@ class Employee:
     '''
 
     LIMIT = 3   # limit for changing fsname and lsname
-    ADDED = 0   # added into system but not active
-    ACTIVE = 1  # added and active
-    DELETED = 2 # delete from system
 
     def __init__(self, empid, fsname, lsname=None, dprtmt=None, salary=0):
         self.id = empid
@@ -42,7 +38,7 @@ class Employee:
         self.dprtmt = dprtmt
         self.salary = salary
         self._limit = Employee.LIMIT
-        self._status = Employee.ADDED
+        self._status = 1
 
 
 class Manager:
@@ -64,72 +60,10 @@ class Manager:
         pass
 
 
-
-
-
 class EMPManager(Manager):
 
-    def emp_exists(self, empid, empdict):
-        empid = ('empid', str(empid))
-        return empid in empdict
-
-    def get_all_emp(self):
-        empdict = db.csv_to_dict(DBPATH, delimiter=',')
-        return empdict
-
-    def get_emp(self, empid, empdict):
-        return empdict[('empid', str(empid))]
-
-    def _build_dict(self, empdict, emp):
-        ''' update all emp dict with emp object/dict '''
-
-        if not isinstance(emp, dict):
-
-            empdict[('empid', f"{emp.id}")] = [
-                {'fsname' : f"{emp.fsname}"},
-                {'lsname' : f"{emp.lsname}"},
-                {'dprtmt' : f"{emp.dprtmt}"},
-                {'salary': f"{emp.salary}"},
-                {'status': f"{emp._status}"},
-                {'limit': f"{emp._limit}"}
-            ]
-
-        else:
-            key = list(emp.keys())[0]
-            values = list(emp.values())[0]
-
-            empdict[key] = [
-                {'fsname' : values[0]['fsname']},
-                {'lsname' : values[1]['lsname']},
-                {'dprtmt' : values[2]['dprtmt']},
-                {'salary':  values[3]['salary']},
-                {'status':  values[4]['status']},
-                {'limit':   values[-1]['limit']}
-            ]
-
-
-        return empdict
-
-
-    def str_to_int(self, empdict):
-        buildict = {}
-        for key, value in empdict.items():
-            buildict[key] = value
-            if key in ['empid', 'salary', 'status', 'limit']:
-                buildict[key] = int(value)
-
-        return buildict
-
-    def int_to_str(self, empdict):
-        buildict = {}
-        for key, value in empdict.items():
-            buildict[key] = value
-            if key in ['empid', 'salary', 'status', 'limit']:
-                buildict[key] = str(value)
-
-        return buildict
-
-
+    ACTIVE = 1  # added and active
+    DELETED = 0 # delete from system
 
     def add(self, emp):
         ''' add an emp to system with status non-active '''
@@ -158,10 +92,6 @@ class EMPManager(Manager):
         empdict = self.get_emp(empid, allempdict)
 
         # update existing employee details
-
-        # set status to 1 for new employee
-        if empdict[4]['status'] == '0':
-            empdict[4]['status'] =  str(1)
 
         # check limit to edit first and last name
         limit = int(empdict[-1]['limit'])
@@ -216,5 +146,65 @@ class EMPManager(Manager):
             print(ERROR.VWT)
         else:
             print(empdict)
+
+    def emp_exists(self, empid, empdict):
+        empid = ('empid', str(empid))
+        return empid in empdict
+
+    def get_all_emp(self):
+        empdict = db.csv_to_dict(DBPATH, delimiter=',')
+        return empdict
+
+    def get_emp(self, empid, empdict):
+        return empdict[('empid', str(empid))]
+
+    def _build_dict(self, empdict, emp):
+        ''' update all empdict with emp object/dict '''
+
+        if not isinstance(emp, dict):
+
+            empdict[('empid', f"{emp.id}")] = [
+                {'fsname' : f"{emp.fsname}"},
+                {'lsname' : f"{emp.lsname}"},
+                {'dprtmt' : f"{emp.dprtmt}"},
+                {'salary': f"{emp.salary}"},
+                {'status': f"{emp._status}"},
+                {'limit': f"{emp._limit}"}
+            ]
+
+        else:
+            key = list(emp.keys())[0]
+            values = list(emp.values())[0]
+
+            empdict[key] = [
+                {'fsname' : values[0]['fsname']},
+                {'lsname' : values[1]['lsname']},
+                {'dprtmt' : values[2]['dprtmt']},
+                {'salary':  values[3]['salary']},
+                {'status':  values[4]['status']},
+                {'limit':   values[-1]['limit']}
+            ]
+
+
+        return empdict
+
+
+    def str_to_int(self, empdict):
+        buildict = {}
+        for key, value in empdict.items():
+            buildict[key] = value
+            if key in ['empid', 'salary', 'status', 'limit']:
+                buildict[key] = int(value)
+
+        return buildict
+
+    def int_to_str(self, empdict):
+        buildict = {}
+        for key, value in empdict.items():
+            buildict[key] = value
+            if key in ['empid', 'salary', 'status', 'limit']:
+                buildict[key] = str(value)
+
+        return buildict
 
 empmgr = EMPManager() # create a manager for employee
