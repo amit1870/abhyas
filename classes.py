@@ -3,7 +3,21 @@
 # inheritance   : inherting property and methods of parents
 #               : inheritance is an is-a relationship
 #               : apple is-a Fruit, car is-a vehicle, dog is-a animal
-# polymorphism  : same object acting differently with scenario change
+# polymorphism  : same object/method/function acting differently with scenario change
+#               : polymorphism is supported in python via method overriding and operator overloading
+#               : in classic sense, python does not support overloading
+
+# polymorphism in python with operator overloading
+# Operator overloading is another type of polymorphism in which the same operator performs
+# various operations depending on the operands. Python allows for operator overloading.
+# 10 + 20 = 30 while '10' + '20 = '1020'
+# [10] * 2 = [10, 10] while 10 * 2 = 20 while *args  give arguments
+
+# polymorphism in python with function
+# len() function acts differently for different objects
+
+# polymorphism in python with class
+# overriding same method name with different classes/inherting classes
 
 # what is class and object ?
 # class  : a skelton/bluprint of for an object.
@@ -266,8 +280,8 @@ class Student:
         for student in students:
             print(student.name)
 
-    def __del__(self):
-        print(f'deleting object {self.name}')
+    # def __del__(self):
+    #     print(f'deleting object {self.name}')
 
 
 amit = Student('stuamit', 34)
@@ -278,7 +292,7 @@ vishu = Student('stuvishu', 34)
 sort_students = amit.sort_student([amit, rahul, santy, vishu])
 amit.print_student(sort_students)
 
-del vishu
+# del vishu
 
 print(amit.name)
 print(rahul.name)
@@ -304,6 +318,39 @@ test_one_marks = AdvDict({'math': 20, 'science' : 30})
 test_two_marks = AdvDict({'math': 30, 'science' : 30})
 test_marks = test_one_marks + test_two_marks
 print(test_marks)
+
+
+class Manushya(ABC):
+
+    @abstractmethod
+    def do_dharm(self):
+        pass
+
+    @abstractmethod
+    def do_sitaram(self):
+        print("jay jay sitaram")
+
+class Braman(Manushya):
+    leader = 'one'
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def do_dharm(self):
+        print("lead society")
+
+
+class Kaushik(Braman):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+
+    def do_sitaram(self):
+        print("jay sri kaushik")
+
+rahul = Kaushik('rahul', 24)
+print(rahul)
+print(rahul.name)
+rahul.do_sitaram()
 
 
 

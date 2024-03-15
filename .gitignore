@@ -5,6 +5,7 @@ __pycache__/
 
 # data files which store confidential information
 BIGFILE.csv
+EMPFILE.csv
 BIGFILE.txt 
 SMLFILE.csv
 SMLFILE.txt
