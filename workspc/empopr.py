@@ -7,8 +7,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
 
-    parser.add_argument("--id", type=int ,help="provide employee id")
-    parser.add_argument("--action", choices=['add', 'edit', 'delete', 'view'], default='view')
+    parser.add_argument("-id", type=int ,help="unique id")
+    parser.add_argument("-ac" ,"--action", choices=['add', 'edit', 'delete', 'view'], default='view')
+    parser.add_argument("-ft" ,"--filtter", choices=['active', 'deleted', 'all'], default='active')
     parser.add_argument("-fs", "--fsname", help="first name")
     parser.add_argument("-ls", "--lsname", help="last name")
     parser.add_argument("-dp", "--dprtmt", help="department", default='bose')
@@ -35,8 +36,6 @@ if __name__ == "__main__":
     if args.salary:
         salary = args.salary
 
-    print(args)
-
     if action == 'add':
         emp = Employee(empid, fsname, lsname, dprtmt, salary)
         added_emp = empmgr.add(emp)
@@ -51,5 +50,5 @@ if __name__ == "__main__":
         print(deleted_emp)
 
     elif action == 'view':
-        empmgr.view(empid)
+        empmgr.view(empid, args.filtter)
 

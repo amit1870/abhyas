@@ -89,7 +89,11 @@ class EMPManager(Manager):
         if not self.emp_exists(empid, allempdict):
             return ERROR.EDT
 
+        # check if employee deleted
         empdict = self.get_emp(empid, allempdict)
+
+        if self.emp_deleted(empdict):
+            return ERROR.EDT
 
         # update existing employee details
 
@@ -127,29 +131,67 @@ class EMPManager(Manager):
         empdict = {('empid', str(empid)): empdict}
         allempdict = self._build_dict(allempdict, empdict)
 
-        # add employee to db
+        # update employee to db
         db.dict_to_csv(allempdict, DBPATH, delimiter=',')
 
         return empid
 
 
     def delete(self, empid):
+        ''' delete an emp with setting status 0 '''
+
+        # check if employee exists
+        allempdict = self.get_all_emp()
+        if not self.emp_exists(empid, allempdict):
+            return ERROR.DEL
+
+        # check if employee already deleted
+        empdict = self.get_emp(empid, allempdict)
+
+        if self.emp_deleted(empdict):
+            return ERROR.DEL
+
+        # delete an emp with setting status 0
+        empdict[-2]['status'] = str(EMPManager.DELETED)
+
+        empdict = {('empid', str(empid)): empdict}
+        allempdict = self._build_dict(allempdict, empdict)
+
+        # delete employee from db
+        db.dict_to_csv(allempdict, DBPATH, delimiter=',')
+
         return empid
 
 
-    def view(self, empid):
-        empdict = self.get_all_emp()
+    def view(self, empid, filtter):
+        ''' display employee by empid or filter '''
 
-        if empid and self.emp_exists(empid, empdict):
-            print(empdict[('empid', str(empid))])
-        elif empid and not self.emp_exists(empid, empdict):
-            print(ERROR.VWT)
+        empdict = {}
+        allempdict = self.get_all_emp()
+
+        if empid:
+            # check if employee exists
+            if not self.emp_exists(empid, allempdict):
+                print(ERROR.VWT)
+                return ERROR.VWT
+
+            empdict[('empid', str(empid))] = self.get_emp(empid, allempdict)
         else:
-            print(empdict)
+            empdict = self.get_emp_by(allempdict, filtter)
+
+        # print employee
+        for key, value in empdict.items():
+            print (key[1], ' => ' ,value)
+
 
     def emp_exists(self, empid, empdict):
         empid = ('empid', str(empid))
         return empid in empdict
+
+    def emp_deleted(self, empdict):
+        status = empdict[-2]['status']
+        return str(EMPManager.DELETED) == str(status)
+
 
     def get_all_emp(self):
         empdict = db.csv_to_dict(DBPATH, delimiter=',')
@@ -157,6 +199,25 @@ class EMPManager(Manager):
 
     def get_emp(self, empid, empdict):
         return empdict[('empid', str(empid))]
+
+    def get_emp_by(self, empdict, filtter):
+
+        actempdict = {}
+        dltempdict = {}
+
+        for key, value in empdict.items():
+            status = int(value[-2]['status'])
+            if status == 1:
+                actempdict[key] = value
+            else:
+                dltempdict[key] = value
+
+        if filtter == 'active':
+            return actempdict
+        elif filtter == 'deleted':
+            return dltempdict
+
+        return empdict
 
     def _build_dict(self, empdict, emp):
         ''' update all empdict with emp object/dict '''
