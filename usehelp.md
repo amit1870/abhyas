@@ -79,3 +79,5 @@
 > https://methodpoet.com/unit-testing-advantages-and-disadvantages/ || testing application/knowledge
 
 >  https://www.bplogix.com/blog/verification-vs-validation-in-software || verification/validation
+
+> https://paragkamble.medium.com/understanding-hooks-in-pytest-892e91edbdb7 || pytest hooks
