@@ -1,4 +1,5 @@
-# simple recusive functions
+# simple recusive functions with limit 277
+
 
 def factorial(n):
     if n < 2:
@@ -12,7 +13,11 @@ def fibonacci(n):
 
     return n + fibonacci(n-1)
 
+def reverse(word):
+    if len(word) == 0:
+        return word
 
-n = 4
-result = fibonacci(n)
-print(result)
+
+    return reverse(word[1:]) + word[0]
+
+
