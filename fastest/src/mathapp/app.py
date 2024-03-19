@@ -1,15 +1,8 @@
 import math
 
-from abc import ABC
 from abc import abstractmethod
 
-class Shape(ABC):
-    def __init__(self, radius=0, height=0, width=0):
-        self.radius = radius
-        self.height = height
-        self.width = width
-        self._area = 0
-        self._perimeter = 0
+class Shape:
 
     @abstractmethod
     def area(self):
@@ -21,8 +14,11 @@ class Shape(ABC):
 
 
 class Square(Shape):
-    def __init__(self, height, width=0):
-        super().__init__(height=height, width=width)
+
+    def __init__(self, side):
+        self._side = side
+        self._area = self._side * self._side
+        self._perimeter = 4 * self._side
 
     @property
     def area(self):
@@ -32,25 +28,12 @@ class Square(Shape):
     def perimeter(self):
         return self._perimeter
 
-    def calculate_and_set_area(self):
-        self._area = self.height * self.height
-
-    def calculate_and_set_perimeter(self):
-        self._perimeter = 4 * self.height
-
-class Rectangle(Square):
-    def __init__(self, height, width):
-        super().__init__(height=height, width=width)
-
-    def calculate_and_set_area(self):
-        self._area = self.height * self.width
-
-    def calculate_and_set_perimeter(self):
-        self._perimeter = 2 * (self.height + self.width)
 
 class Circle(Shape):
     def __init__(self, radius):
-        super().__init__(radius=radius)
+        self._radius = radius
+        self._area = math.pi * self._radius * self._radius
+        self._perimeter = 2 * math.pi * self._radius
 
     @property
     def area(self):
@@ -59,30 +42,19 @@ class Circle(Shape):
     @property
     def perimeter(self):
         return self._perimeter
-
-    def calculate_and_set_area(self):
-        self._area = math.pi * self.radius * self.radius
-
-    def calculate_and_set_perimeter(self):
-        self._perimeter = 2  * math.pi * self.radius
-
 
 
 class Calculator:
 
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+    def add(self, a, b):
+        return a + b
 
-    def add(self):
-        return self.a + self.b
+    def sub(self, a, b):
+        return a - b
 
-    def sub(self):
-        return self.a - self.b
+    def mul(self, a, b):
+        return a * b
 
-    def mul(self):
-        return self.a * self.b
-
-    def div(self):
-        return self.a / self.b
+    def div(self, a, b):
+        return a / b
 
