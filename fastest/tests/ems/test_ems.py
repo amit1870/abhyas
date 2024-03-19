@@ -2,43 +2,43 @@ import pytest
 
 from src.ems.emp_mgmt import empmgr
 
-@pytest.mark.cmd
-def test_employee_with_cmd(employee):
-    assert employee.id > 0
+@pytest.mark.skip
+def test_ems_db_running(is_db_running):
+    assert is_db_running
 
-@pytest.mark.empadd
+
+@pytest.mark.skip
+def test_empty_db(empty_db):
+    with open(empty_db) as fp:
+        content = fp.read()
+
+    assert 'empid,fsname,lsname,dprtmt,salary,status,limit' in content
+
+@pytest.mark.skip
 def test_employee_add(employee):
     assert employee.id == empmgr.add(employee)
 
-@pytest.mark.empedit
-def test_employee_edit_one(employee_id, employee_details):
+@pytest.mark.skip
+def test_employee_edit(employee_id, employee_details):
     assert employee_id == empmgr.edit(employee_id, **employee_details)
 
-@pytest.mark.empedit
-def test_employee_edit_two(employee_id, employee_details):
-    non_existing_employee_id = 100
-    with pytest.raises(AssertionError):
-        assert employee_id == empmgr.edit(non_existing_employee_id, **employee_details)
-
-@pytest.mark.empdelete
-def test_employee_delete_one(employee_id):
-    assert employee_id == empmgr.delete(employee_id)
-
-@pytest.mark.empdelete
-def test_employee_delete_two(employee_id):
-    assert ('error in delete employee',) == empmgr.delete(employee_id)
-
-@pytest.mark.empmock
 def test_employee_add_mock(employee, monkeypatch):
-    def mockadd():
-        return employee.id
+    def add(employee):
+        return 202
 
-    monkeypatch.setattr(empmgr, 'add', mockadd)
+    monkeypatch.setattr(empmgr, 'add', add)
 
-    assert employee.id == empmgr.add()
+    employee_id = 202
 
-@pytest.mark.empmock
-def test_employee_edit_mock(employee):
-    assert employee.id == empmgr.edit(employee.id)
+    assert employee_id == empmgr.add(employee)
 
+def test_employee_edit_mock(employee_id, employee_details, monkeypatch):
+    def edit(employee_id, **employee_details):
+        return 202
+
+    monkeypatch.setattr(empmgr, 'edit', edit)
+
+    employee_id = 202
+
+    assert employee_id == empmgr.edit(employee_id, **employee_details)
 

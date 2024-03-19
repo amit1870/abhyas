@@ -63,7 +63,7 @@ class Manager:
 class EMPManager(Manager):
 
     ACTIVE = 1  # added and active
-    DELETED = 0 # delete from system
+    DELETED = 0 # deleted and inactive
 
     def add(self, emp):
         ''' add an emp to system with status non-active '''
@@ -114,7 +114,7 @@ class EMPManager(Manager):
                 empdict[1]['lsname'] =  str(value)
                 change_limit = True
             elif key == 'lsname' and value.strip() != '' and limit == 0:
-                print(f"{empdict[0]['fsname']} have reached limit to change last name.")
+                print(f"{empdict[1]['lsname']} have reached limit to change last name.")
 
             if key == 'dprtmt':
                 empdict[2]['dprtmt'] =  str(value)
