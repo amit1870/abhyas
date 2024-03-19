@@ -30,3 +30,16 @@ def test_circle(circle):
     assert circle(10).area == math.pi * 10 * 10
     assert circle(10).perimeter == 2 * math.pi * 10
 
+def test_square_request(square_request):
+    assert square_request.area
+
+
+def test_circle_cmd(circle_radius_cmd):
+    assert circle_radius_cmd.area
+
+
+def test_square_cmd(square_side_cmd):
+    assert square_side_cmd.area
+
+
+
