@@ -47,5 +47,4 @@ tankers = [50,60,70,80,90,100]
 capacity = 180
 t = Tanker(tankers)
 tn = t.get_tankers(capacity)
-print(tn)
 
