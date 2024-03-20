@@ -46,4 +46,3 @@ t = Tanker(tankers)
 tn = t.get_tankers(capacity)
 print(tn)
 
-
