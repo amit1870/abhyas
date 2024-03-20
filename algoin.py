@@ -217,74 +217,8 @@ def get_logo(company):
         print(pair[0], pair[1])
 
 
-def count_set(nlist, maxlimit):
-    count = 0
-    traversed = []
-    for i in range(len(nlist)):
-        for j in range(len(nlist)):
-            for k in range(len(nlist)):
-                if i != j and i != k and j != k:
-                    triplet = sorted([nlist[i], nlist[j], nlist[k]])
-                    if triplet not in traversed and sum(triplet) < maxlimit:
-                        count += 1
-                        traversed.append(triplet)
-                        # print(traversed)
-
-    return count
 
 
-nlist = [10, 5, 8, 15, 11, 7]
-maxlimit = 25
-
-set_count = count_set(nlist, maxlimit)
-# print(set_count)
-
-
-class Tanker:
-    tankers = []
-    def __init__(self, capacity):
-        self.capacity = capacity
-        self.tankers.append(capacity)
-
-    def required_tankers(self, day_capacity):
-        tankers = []
-
-        sorted_tankers = sorted(self.tankers, reverse=True)
-        findex = 0
-        rindex = -1
-
-        while day_capacity > 0 and findex < len(sorted_tankers) and rindex >= - len(sorted_tankers):
-            tank = sorted_tankers[findex]
-            if day_capacity <= sorted_tankers[rindex]:
-                tank = sorted_tankers[rindex]
-                rindex -= 1
-
-
-            day_capacity -= tank
-            findex += 1
-            tankers.append(tank)
-
-        return tankers
-
-tanks = [50,45,10,70,60,20]
-tobj = Tanker(50)
-for tank in tanks[1:]:
-    Tanker(tank)
-
-
-
-def search_substring(slist):
-    if len(slist) < 3:
-        return ''
-
-    paired = []
-    for sitem in slist:
-        for ditem in slist:
-            if sitem != ditem:
-                if sitem + ditem in slist:
-                    paired.append(sitem + ditem)
-
-    return " ".join(paired)
 
 
 
