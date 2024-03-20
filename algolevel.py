@@ -38,10 +38,13 @@ class Tanker:
 
     def get_tankers(self, capacity):
         tanks = []
+        for ti, tiv in enumerate(sorted(self.tankers)):
+            pass
+
         return tanks
 
 tankers = [50,60,70,80,90,100]
-capacity = 140
+capacity = 180
 t = Tanker(tankers)
 tn = t.get_tankers(capacity)
 print(tn)
