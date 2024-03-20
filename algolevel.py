@@ -28,4 +28,22 @@ def search_pair(array):
 
 array = ['radha', 'krishna', 'radhakrishna', 'anuj', 'ram' ,'ramanuj', 'bharat', 'bharatanuj']
 t = search_pair(array)
-print(t)
+# print(t)
+
+
+class Tanker:
+    def __init__(self, tankers):
+        self.tankers = tankers
+
+
+    def get_tankers(self, capacity):
+        tanks = []
+        return tanks
+
+tankers = [50,60,70,80,90,100]
+capacity = 140
+t = Tanker(tankers)
+tn = t.get_tankers(capacity)
+print(tn)
+
+
