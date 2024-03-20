@@ -37,15 +37,51 @@ class Tanker:
 
 
     def get_tankers(self, capacity):
+        cpd_capacity = capacity
         tanks = []
         tankers = sorted(self.tankers, reverse=True)
-        while capacity > 0:
-            pass
+
+        i = 0
+        while cpd_capacity > 0:
+            if tankers[i] <= cpd_capacity:
+                tanks.append(tankers[i])
+                cpd_capacity -= tankers[i]
+
+            elif tankers[i] > cpd_capacity:
+                tanks.append(tankers[i])
+                cpd_capacity -= tankers[i]
+                break
+
+            i += 1
+
+
+        if sum(tanks) - capacity > 0:
+            # optimize if possible with one level dynamic
+            last_tank = tanks[-1]
+            tanks = tanks[:-1]
+            rtanks = []
+
+            rem_capacity = capacity - sum(tanks)
+
+
+            j = -1
+            while rem_capacity > 0 and j >= - len(self.tankers):
+                rtanks.append(self.tankers[j])
+                rem_capacity -= sum(rtanks)
+                j -= 1
+
+            if sum(rtanks) < last_tank:
+                tanks.extend(rtanks)
+            else:
+                tanks.append(last_tank)
 
         return tanks
 
-tankers = [50,60,70,80,90,100]
-capacity = 180
+tankers = [10, 8, 7, 6, 4, 2]
+capacity = 19
 t = Tanker(tankers)
-tn = t.get_tankers(capacity)
+print(t.tankers)
+for capacity in [10, 14, 13, 15, 20, 34, 25]:
+    tn = t.get_tankers(capacity)
+    # print(f"{capacity} : {tn} : {sum(tn)}")
 
