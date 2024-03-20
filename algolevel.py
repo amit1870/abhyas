@@ -38,7 +38,8 @@ class Tanker:
 
     def get_tankers(self, capacity):
         tanks = []
-        for ti, tiv in enumerate(sorted(self.tankers)):
+        tankers = sorted(self.tankers, reverse=True)
+        while capacity > 0:
             pass
 
         return tanks
