@@ -62,6 +62,10 @@
 
 ### LEARN URLS
 
+> https://education.github.com/git-cheat-sheet-education.pdf || git cheetsheet
+
+> https://vimsheet.com/ || vim cheetsheet
+
 > https://www.youtube.com/watch?v=vbQ2bYHxxEA&ab_channel=SyalInfotainment || Git
 
 > https://docs.python-guide.org/ || The Hitchhiker’s Guide to Python!
