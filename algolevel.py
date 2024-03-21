@@ -80,7 +80,6 @@ class Tanker:
 tankers = [10, 8, 7, 6, 4, 2]
 capacity = 19
 t = Tanker(tankers)
-print(t.tankers)
 for capacity in [10, 14, 13, 15, 20, 34, 25]:
     tn = t.get_tankers(capacity)
     # print(f"{capacity} : {tn} : {sum(tn)}")
