@@ -1,4 +1,4 @@
-def choose_triplet(array, targetsum):
+def triplet_with_targetsum(array, targetsum):
     triplet = []
     for i, vi in enumerate(array):
         for j, vj in enumerate(array):
