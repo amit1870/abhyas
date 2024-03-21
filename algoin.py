@@ -118,16 +118,6 @@ def read_file(filepath):
 
     return count, line_count
 
-def fibonaci(n):
-    if n <= 1:
-        return n
-    return n + fibonaci(n-1)
-
-def factorial(n):
-    if n <= 1:
-        return n
-    return n * factorial(n-1)
-
 def matrix_sum_tool(matrix_X, matrix_Y, matrix_Z):
     import itertools
     matrix_sum = []
