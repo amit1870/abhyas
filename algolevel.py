@@ -13,7 +13,7 @@ def triplet_with_targetsum(array, targetsum):
 
 array = [4, 7, 8, 1, 7, 8, 9]
 targetsum = 23
-t = choose_triplet(array, targetsum)
+t = triplet_with_targetsum(array, targetsum)
 # print(t)
 
 def search_pair(array):
@@ -83,4 +83,59 @@ t = Tanker(tankers)
 for capacity in [10, 14, 13, 15, 20, 34, 25]:
     tn = t.get_tankers(capacity)
     # print(f"{capacity} : {tn} : {sum(tn)}")
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+
+        if len(s) == 0:
+            return 0
+
+        max_length = 0
+
+        prv_ch = s[0]
+        substring = [prv_ch]
+        for ch in s[1:]:
+            if prv_ch != ch and ch not in substring:
+                substring.append(ch)
+
+            else:
+                if len(substring) > max_length:
+                    max_length = len(substring)
+
+                i = 0
+                while i < len(substring):
+                    if substring[i] == ch:
+                        break
+                    i += 1
+
+                substring = substring[i+1 : ]
+                substring.append(ch)
+
+            prv_ch = ch
+
+        if len(substring) > max_length:
+            max_length = len(substring)
+
+        return max_length
+
+
+    def twoSum(self, nums, target: int):
+        pair = {}
+        for idx, item in enumerate(nums):
+
+            for k, v in pair.items():
+                if item + v == target:
+                    return [k, idx]
+
+            pair[idx] = item
+
+
+
+
+nums = [3,2,4]
+target = 6
+soultion = Solution()
+lens = soultion.twoSum(nums, target)
+print(lens)
 
