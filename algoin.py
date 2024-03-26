@@ -208,10 +208,55 @@ def get_logo(company):
 
 
 
+def duplicate_in_list(array):
+    from collections import defaultdict
+
+    array_dict = defaultdict(int)
+
+    for item in array:
+        array_dict[item] += 1
+
+    duplicate_array = []
+    for k, v in array_dict.items():
+        if v > 1:
+            duplicate_array.append(k)
+
+    return duplicate_array
+
+array = [10, 8, 10, 20, 8, 9, 1, 2, 9, 78, 65, 23, 9, 8, 7, 29, 30, 7]
+duplicates = duplicate_in_list(array)
+# print(duplicates)
 
 
+def sum_number(n):
+    # 1 + 2 + 3 ... + n - 1 + n = total
+
+    total = 0
+
+    while n != 0:
+        total += n
+        n -= 1
+
+    return total
+
+total = sum_number(6)
+# print(total)
+
+def find_multiple(array, multiple):
+    multiple_array = []
+    for item in array:
+        if item % multiple == 0:
+            multiple_array.append(item)
+
+    return multiple_array
 
 
+array = [i for i in range(1,101)]
+multiple_array = find_multiple(array, 10)
+# print(multiple_array)
+
+multiple_array = [i for i in range(1,101) if i % 10 == 0]
+# print(multiple_array)
 
 
 

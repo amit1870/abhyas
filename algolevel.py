@@ -137,5 +137,52 @@ nums = [3,2,4]
 target = 6
 soultion = Solution()
 lens = soultion.twoSum(nums, target)
-print(lens)
+# print(lens)
+
+
+def longest_substring(vstring):
+    longest_length = 0
+    longest = []
+
+    if len(vstring) == 0:
+        return longest_length
+
+    prevchar = vstring[0]
+    holder = [prevchar]
+
+    for index, char in enumerate(vstring[1:]):
+        if prevchar != char and char not in holder:
+            holder.append(char)
+
+        else:
+            if longest == []:
+                longest = holder
+
+            if longest and len(longest) < len(holder):
+                longest = []
+                longest = holder
+
+            i = 0
+            while i < len(holder):
+                if holder[i] == char:
+                    break
+                i += 1
+
+            holder = holder[i+1:]
+            holder.append(char)
+
+        prevchar = char
+
+    if longest and len(longest) < len(holder):
+        longest = []
+        longest = holder
+
+
+    return longest, len(longest)
+
+vstring = "amitpatelsachinpatel"
+longest = longest_substring(vstring)
+# print(longest)
+
+
 

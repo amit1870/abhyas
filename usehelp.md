@@ -87,3 +87,5 @@
 > https://paragkamble.medium.com/understanding-hooks-in-pytest-892e91edbdb7 || pytest hooks
 
 > https://www.youtube.com/watch?v=WvcHQtyPcTs || jenkins
+
+> https://www.pythonguis.com/tutorials/creating-your-first-pyqt-window/ || pyqt
