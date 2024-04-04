@@ -1,7 +1,7 @@
 # decorator : allow to extend/modify a function without touching original function
-#           : inner function allow to pass argument to original function
-#           : returned inner function allow to take argument from outside of outer function
-#           : variable binding to inner function
+#           : inner/closure function allow to pass argument to original function
+#           : returned inner/closure function allow to take argument from outside of outer function
+#           : variable binding to inner/closure function
 # iterator  : which implements two method __iter__() and __next__().
 # generator : allow to create iterator in functional style.
 # generator : no need to provide __iter__ and __next__ method.
