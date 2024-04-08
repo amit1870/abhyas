@@ -145,7 +145,7 @@ def second_max_with_index(numbers):
             second_highest_index = second_highest_index
             highest = number
 
-        elif number > second_highest and number != highest:
+        elif number > second_highest and number < highest:
             second_highest = number
             second_highest_index = index
 
