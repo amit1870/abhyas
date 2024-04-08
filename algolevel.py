@@ -2,7 +2,7 @@ def get_permutation(array):
     permutation = []
 
     if len(array) < 3:
-        return permutation
+        return array
 
     for i in range(len(array)):
         for j in range(i+1, len(array)):
@@ -15,7 +15,7 @@ def get_triplet(array):
     permutation = []
 
     if len(array) < 4:
-        return permutation
+        return array
 
     for i in range(len(array)):
         for j in range(i+1, len(array)):
